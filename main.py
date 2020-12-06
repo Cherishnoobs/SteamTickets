@@ -13,8 +13,11 @@ app.config['JSON_AS_ASCII'] =False
 @app.route('/')
 @app.route('/index')
 def index():
-    # page = int(request.args.get('page'))
-    data = myRedis.findMany(12*(1-1)+0)
+    if request.args.get('page') is None:
+        data = myRedis.findMany(12*(1-1)+0)
+    else:
+        page = int(request.args.get('page'))
+        data = myRedis.findMany(12*(page-1)+0)
     return render_template('index.html',data=data)
 
 
