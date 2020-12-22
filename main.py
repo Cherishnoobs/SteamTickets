@@ -20,6 +20,9 @@ def index():
         data = myRedis.findMany(12*(page-1)+0)
     return render_template('index.html',data=data)
 
+@app.route('/about')
+def aboutus():
+    return render_template('about.html')
 
 @app.route('/info/api/v1.0/', methods=['GET'])
 def get_api():
